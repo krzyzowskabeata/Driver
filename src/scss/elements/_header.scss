@@ -1,0 +1,16 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .header_base {
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #fff;
+    margin-top: 20px;
+
+    span {
+      color: #8e9c8b;
+    }
+  }
+}
