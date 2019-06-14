@@ -18,10 +18,14 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: noah, sans-serif;
+}
+
+*:focus {
+  outline: 0;
 }
 
 body {
-  font-family: noah, sans-serif;
   background-image: url("./../../images/background_v2.png");
   background-size: cover;
   background-position: center;

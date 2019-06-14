@@ -1,0 +1,41 @@
+@mixin custom-log {
+  font-size: 1em;
+  font-weight: 700;
+  border: none;
+  border-radius: 50px;
+  margin: 15px;
+}
+
+.logpanel {
+  font-weight: 700;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  h2 {
+    margin: 10px;
+  }
+
+  input[type="name"],
+  input[type="password"] {
+    padding: 15px 10%;
+    @include custom-log;
+  }
+
+  input[type="checkbox"] {
+    display: none;
+  }
+
+  button {
+    color: #fff;
+    background-color: $btn-color;
+    padding: 5px 15px;
+    transition: background-color .2s ease-out;
+    @include custom-log;
+  }
+  button:hover {
+    background-color: transparent;
+  }
+}

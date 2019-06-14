@@ -2,3 +2,23 @@
   max-width: 1250px;
   margin: 0 auto;
 }
+
+.blackpage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #00000080;
+}
+
+.whitepage {
+  min-width: 300px;
+  position: absolute;
+  top: 20%;
+  right: 35%;
+  bottom: 30%;
+  left: 35%;
+  color: #000;
+  background-color: #8e9c8b40;
+}
