@@ -1,7 +1,7 @@
 @mixin custom-log {
   font-size: 1em;
   font-weight: 700;
-  border: none;
+  border: transparent;
   border-radius: 50px;
   margin: 15px;
 }
@@ -28,14 +28,40 @@
     display: none;
   }
 
-  button {
+  label {
+    color: $btn-color;
+    margin: 15px;
+    transition: color .2s ease-out;
+  }
+
+  label:hover {
+    color: #fff;
+  }
+
+  button.btn_login_small {
+    width: 100px;
     color: #fff;
     background-color: $btn-color;
     padding: 5px 15px;
     transition: background-color .2s ease-out;
     @include custom-log;
   }
-  button:hover {
+
+  button.btn_login_small:hover {
     background-color: transparent;
+  }
+
+  .remember {
+    color: #fff;
+    margin: 15px;
+  }
+
+  .invalid {
+    background-color: #BB8F78B3;
+    box-shadow: 0 0 0 1px #fff;
+
+    &::placeholder {
+      color: #fff;
+    }
   }
 }
