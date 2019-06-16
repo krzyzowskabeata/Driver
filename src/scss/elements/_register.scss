@@ -54,4 +54,17 @@
     color: #fff;
     margin: 5px;
   }
+
+  .invalid {
+    background-color: #BB8F78B3;
+    box-shadow: 0 0 0 1px #fff;
+
+    &::placeholder {
+      color: #fff;
+    }
+  }
+
+  .invalid_accept {
+    color: #BB8F78;
+  }
 }

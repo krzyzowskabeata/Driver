@@ -17,6 +17,13 @@ class Register extends Component {
         emailPlaceholder: "Mail",
         pwd1Placeholder: "Password",
         pwd2Placeholder: "Repeat password",
+        nameValid: true,
+        surnameValid: true,
+        guidValid: true,
+        emailValid: true,
+        pwd1Valid: true,
+        pwd2Valid: true,
+        isCheckedValid: true,
     };
 
     toggleChange = () => {
@@ -41,6 +48,7 @@ class Register extends Component {
         if(this.state.name.length < 3) {
             this.setState({
                 valid: false,
+                nameValid: false,
                 name: "",
                 namePlaceholder: "Maybe a bit longer name?"
             });
@@ -49,6 +57,7 @@ class Register extends Component {
         if(this.state.surname.length < 3) {
             this.setState({
                 valid: false,
+                surnameValid: false,
                 surname: "",
                 surnamePlaceholder: "Maybe a bit longer surname?"
             });
@@ -57,6 +66,7 @@ class Register extends Component {
         if(this.state.guid.length < 3) {
             this.setState({
                 valid: false,
+                guidValid: false,
                 guid: "",
                 guidPlaceholder: "Try a bit longer login!"
             });
@@ -65,6 +75,7 @@ class Register extends Component {
         if(this.state.email.indexOf("@") === -1) {
             this.setState({
                 valid: false,
+                emailValid: false,
                 email: "",
                 emailPlaceholder: "Forgotten @?"
             });
@@ -73,6 +84,7 @@ class Register extends Component {
         if(this.state.pwd1.length < 4) {
             this.setState({
                 valid: false,
+                pwd1Valid: false,
                 pwd1: "",
                 pwd1Placeholder: "Try a bit longer password!"
             });
@@ -81,6 +93,7 @@ class Register extends Component {
         if(this.state.pwd1 !== this.state.pwd2) {
             this.setState({
                 valid: false,
+                pwd2Valid: false,
                 pwd2: "",
                 pwd2Placeholder: "Match passwords!"
             });
@@ -89,6 +102,7 @@ class Register extends Component {
         if(!this.state.isChecked) {
             this.setState({
                 valid: false,
+                isCheckedValid: false
             });
         }
 
@@ -111,19 +125,25 @@ class Register extends Component {
                         <h2>Register to drive!</h2>
                         <form onSubmit={this.handleSubmit}>
                             <input type="text" name="name" placeholder={this.state.namePlaceholder}
-                                   value={this.state.name} onChange={this.handleChange} />
+                                   value={this.state.name} onChange={this.handleChange}
+                                   className={this.state.nameValid ? "" : "invalid"} />
                             <input type="text" name="surname" placeholder={this.state.surnamePlaceholder}
-                                   value={this.state.surname} onChange={this.handleChange} />
+                                   value={this.state.surname} onChange={this.handleChange}
+                                   className={this.state.surnameValid ? "" : "invalid"} />
                             <input type="text" name="guid" placeholder={this.state.guidPlaceholder}
-                                   value={this.state.guid} onChange={this.handleChange} />
+                                   value={this.state.guid} onChange={this.handleChange}
+                                   className={this.state.guidValid ? "" : "invalid"} />
                             <input type="email" name="email" placeholder={this.state.emailPlaceholder}
-                                   value={this.state.email} onChange={this.handleChange} />
+                                   value={this.state.email} onChange={this.handleChange}
+                                   className={this.state.emailValid ? "" : "invalid"} />
                             <input type="password" name="pwd1" placeholder={this.state.pwd1Placeholder}
-                                   value={this.state.pwd1} onChange={this.handleChange} />
+                                   value={this.state.pwd1} onChange={this.handleChange}
+                                   className={this.state.pwd1Valid ? "" : "invalid"} />
                             <input type="password" name="pwd2" placeholder={this.state.pwd2Placeholder}
-                                   value={this.state.pwd2} onChange={this.handleChange} />
+                                   value={this.state.pwd2} onChange={this.handleChange}
+                                   className={this.state.pwd2Valid ? "" : "invalid"} />
                             <div>
-                                <label className={this.state.isChecked ? "accept" : "no_accept"}>
+                                <label className={this.state.isChecked ? "accept" : "no_accept" && this.state.isCheckedValid ? "no_accept" : "invalid_accept"}>
                                     <input type="checkbox"
                                            checked={this.state.isChecked}
                                            onChange={this.toggleChange} />
