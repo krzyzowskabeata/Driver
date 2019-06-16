@@ -1,0 +1,57 @@
+@mixin custom-register {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin custom-input {
+  font-size: 1em;
+  font-weight: 700;
+  border: transparent;
+  border-radius: 50px;
+  padding: 10px 10%;
+  margin: 5px;
+}
+
+.register {
+  font-weight: 700;
+  color: #fff;
+  @include custom-register;
+
+  &.whitepage {
+    top: 15%;
+    bottom: 15%;
+  }
+
+  h2 {
+    margin: 10px;
+  }
+
+  form {
+    @include custom-register;
+  }
+
+  input {
+    @include custom-input;
+  }
+
+  input[type="checkbox"] {
+    display: none;
+  }
+
+  .no_accept {
+    color: $btn-color;
+    margin: 5px;
+    transition: color .2s ease-out;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+
+  .accept {
+    color: #fff;
+    margin: 5px;
+  }
+}

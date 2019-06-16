@@ -129,14 +129,14 @@ class LogPanel extends Component {
                         <input type="password" placeholder={this.state.placeholderPassword}
                                value={this.state.password} id="password" onChange={this.handleChange}
                                className={this.state.validPassword ? "" : "invalid"} />
-                        <div className={"login_panel"}>
+                        <div>
                             <label className={this.state.isChecked ? "remember" : ""}>
                                 <input type="checkbox"
                                        checked={this.state.isChecked}
                                        onChange={this.toggleChange} />
                                 Remember
                             </label>
-                            <button className={"btn_login_small"} type="submit" onClick={this.handleLogin}>Log in</button>
+                            <button className={"btn_log_small"} type="submit" onClick={this.handleLogin}>Log in</button>
                         </div>
                     </div>
                 </div>

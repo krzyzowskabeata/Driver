@@ -38,19 +38,6 @@
     color: #fff;
   }
 
-  button.btn_login_small {
-    width: 100px;
-    color: #fff;
-    background-color: $btn-color;
-    padding: 5px 15px;
-    transition: background-color .2s ease-out;
-    @include custom-log;
-  }
-
-  button.btn_login_small:hover {
-    background-color: transparent;
-  }
-
   .remember {
     color: #fff;
     margin: 15px;

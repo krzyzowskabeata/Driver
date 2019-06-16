@@ -1,9 +1,9 @@
 import React, {Component} from "react";
 import LogPanel from './LogPanel'
+import Register from './Register'
 
 class Log extends Component {
     state = {
-        logged: false,
         savedUser: ""
     };
 
@@ -17,26 +17,32 @@ class Log extends Component {
         }
     }
 
-    handleLogin = () => {
+    handleClick = (e) => {
         this.setState({
-            logged: true
+            [e.target.name]: true
         })
     };
 
     render() {
-        if(this.state.savedUser || this.state.logged) {
+        if(this.state.savedUser || this.state.login) {
             return (
                 <div className="header">
                     <LogPanel />
                 </div>
             );
 
+        } else if(this.state.register) {
+            return (
+                <div className="header">
+                <Register />
+            </div>
+            );
         } else {
             return (
                 <div className="header">
                     <div className="header_log">
-                        <button className="btn_log btn_active" name="login" onClick={this.handleLogin}>Log in</button>
-                        <button className="btn_log" name="logout" onClick={this.handleLogOut}>Register</button>
+                        <button className="btn_log btn_active" name="login" onClick={this.handleClick}>Log in</button>
+                        <button className="btn_log" name="register" onClick={this.handleClick}>Register</button>
                     </div>
                 </div>
             );
