@@ -71,24 +71,26 @@ class LogPanel extends Component {
                 placeholderLogin: "No user",
                 validLogin: false
             });
-        } else if(currentUser[0].password !== this.state.password) {
-                this.setState({
-                    password: "",
-                    placeholderPassword: "Faulty password",
-                    validPassword: false
-                });
-        } else {
-            if(this.state.isChecked) {
-                localStorage.setItem("savedUser", currentUser[0].name);
+        }
 
-                this.setState({
-                    savedUser: currentUser[0].name
-                });
-            }
+        if(currentUser.length !== 0 && currentUser[0].password !== this.state.password) {
             this.setState({
-                greeting: currentUser[0].name
+                password: "",
+                placeholderPassword: "Faulty password",
+                validPassword: false
             });
         }
+
+        if(currentUser.length !== 0 && this.state.isChecked) {
+            localStorage.setItem("savedUser", currentUser[0].name);
+
+            this.setState({
+                savedUser: currentUser[0].name
+            });
+        }
+        this.setState({
+            greeting: currentUser[0].name
+        });
     };
 
     handleLogout = (e) => {
@@ -141,6 +143,7 @@ class LogPanel extends Component {
                         <input type="name" placeholder={this.state.placeholderLogin}
                                value={this.state.login} id="login" onChange={this.handleChange}
                                 className={this.state.validLogin ? "" : "invalid"} />
+
                         <input type="password" placeholder={this.state.placeholderPassword}
                                value={this.state.password} id="password" onChange={this.handleChange}
                                className={this.state.validPassword ? "" : "invalid"} />
@@ -152,6 +155,10 @@ class LogPanel extends Component {
                                 Remember
                             </label>
                             <button className={"btn_log_small"} type="submit" onClick={this.handleLogin}>Log in</button>
+                            {this.state.validLogin ? "" : (
+                                <NavLink to="/register">
+                                    <button className={"btn_log_small btn_register"}>Register</button>
+                                </NavLink>)}
                         </div>
                     </div>
                 </div>

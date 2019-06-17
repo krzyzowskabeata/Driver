@@ -3,7 +3,6 @@ import Navigation from './Navigation'
 
 class Header extends Component {
     render() {
-
         return (
             <div className="header">
                 <div className="header_base">
