@@ -102,7 +102,11 @@ class LogPanel extends Component {
             login: "",
             password: "",
             isChecked: false,
-            greeting: ""
+            greeting: "",
+            placeholderLogin: "Login",
+            placeholderPassword: "Password",
+            validLogin: true,
+            validPassword: true,
         });
     };
 

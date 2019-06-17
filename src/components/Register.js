@@ -116,6 +116,19 @@ class Register extends Component {
         }
     };
 
+    // handleLogout = (e) => {
+    //     e.preventDefault();
+
+        // localStorage.removeItem("savedUser");
+        // this.setState({
+        //     savedUser: "",
+        //     login: "",
+        //     password: "",
+        //     isChecked: false,
+        //     greeting: ""
+        // });
+    // };
+
     handleBack = (e) => {
         if(e.target.getAttribute("class") === "blackpage") {
             this.setState({
@@ -149,8 +162,20 @@ class Register extends Component {
             return (
                 <div className={"blackpage"} onClick={this.handleBack}>
                     <div className={"register whitepage"}>
-                        <h2>{"Hi " + this.state.name + ","}</h2>
-                        <h4>Thank you for your registration!</h4>
+                        <h1>{"Hi " + this.state.name + ","}</h1>
+                        <h3>Thank you for your registration!</h3>
+                        <h3>{"What would you like to do?"}</h3>
+                        <div>
+                            <NavLink to="/tips">
+                                <button className={"btn_log btn_active"}>Gather tips</button>
+                            </NavLink>
+                            <NavLink to="/forum">
+                                <button className={"btn_log btn_active"}>Visit forum</button>
+                            </NavLink>
+                        </div>
+                        <NavLink to="/">
+                            <button className={"btn_log"} type="submit" onClick={this.handleLogout}>Log out</button>
+                        </NavLink>
                     </div>
                 </div>
             );

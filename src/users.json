@@ -7,14 +7,6 @@
       "email": "beata.krzyzowska@gazeta.pl",
       "password": "1234",
       "id": 1
-    },
-    {
-      "name": "Dominik",
-      "surname": "Dobry",
-      "guid": "dobry",
-      "email": "dobry@mail.pl",
-      "password": "123",
-      "id": 2
     }
   ]
 }
