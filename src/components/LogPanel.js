@@ -4,6 +4,7 @@ import {NavLink, Redirect} from 'react-router-dom';
 class LogPanel extends Component {
 
     state = {
+        users: [],
         savedUser: "",
         login: "",
         password: "",
@@ -17,7 +18,7 @@ class LogPanel extends Component {
     };
 
     componentDidMount() {
-        const savedUser = localStorage.getItem("savedUser");
+        var savedUser = localStorage.getItem("savedUser");
 
         if(savedUser) {
             this.setState({
@@ -25,6 +26,16 @@ class LogPanel extends Component {
                 greeting: savedUser,
             });
         }
+
+        fetch("http://localhost:3000/users").then(el => el.json())
+            .then(users => {
+                this.setState({
+                    users
+                });
+            })
+            .catch(err => {
+                console.log(err);
+            });
     }
 
     handleChange = (e) => {
@@ -43,39 +54,41 @@ class LogPanel extends Component {
     handleLogin = (e) => {
         e.preventDefault();
 
+        const currentUser = this.state.users.filter(e => {
+            return e.guid === this.state.login
+        });
+
         this.setState({
+            currentUser,
             validLogin: true,
             validPassword: true
         });
 
-        if(this.state.isChecked) {
-            localStorage.setItem("savedUser", this.state.login);
-
-            this.setState({
-                savedUser: this.state.login
-            });
-        }
-
-        this.setState({
-            greeting: this.state.login
-        });
-
-        if(this.state.login.length < 3) {
+        if(currentUser.length === 0) {
             this.setState({
                 login: "",
+                password: "",
                 placeholderLogin: "No user",
                 validLogin: false
             });
-        }
+        } else if(currentUser[0].password !== this.state.password) {
+                this.setState({
+                    password: "",
+                    placeholderPassword: "Faulty password",
+                    validPassword: false
+                });
+        } else {
+            if(this.state.isChecked) {
+                localStorage.setItem("savedUser", currentUser[0].name);
 
-        if(this.state.password.length < 3) {
+                this.setState({
+                    savedUser: currentUser[0].name
+                });
+            }
             this.setState({
-                password: "",
-                placeholderPassword: "Faulty password",
-                validPassword: false
+                greeting: currentUser[0].name
             });
         }
-
     };
 
     handleLogout = (e) => {
@@ -91,10 +104,12 @@ class LogPanel extends Component {
         });
     };
 
-    handleBack = () => {
-        this.setState({
-            redirect: "/"
-        })
+    handleBack = (e) => {
+        if(e.target.getAttribute("class") === "blackpage") {
+            this.setState({
+                redirect: "/"
+            });
+        }
     };
 
     render() {
@@ -120,7 +135,7 @@ class LogPanel extends Component {
             );
         } else {
             return (
-                <div className={"blackpage"}>
+                <div className={"blackpage"} onClick={this.handleBack}>
                     <div className={"logpanel whitepage"}>
                         <h2>Let's drive!</h2>
                         <input type="name" placeholder={this.state.placeholderLogin}

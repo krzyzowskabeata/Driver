@@ -8,6 +8,11 @@
     font-weight: 700;
     color: #fff;
     margin-top: 40px;
+    transition: color 2s ease-out;
+
+    &:hover {
+      color: $btn-color;
+    }
 
     span {
       color: #8e9c8b;

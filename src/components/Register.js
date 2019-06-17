@@ -24,6 +24,7 @@ class Register extends Component {
         pwd1Valid: true,
         pwd2Valid: true,
         isCheckedValid: true,
+        redirect: ""
     };
 
     toggleChange = () => {
@@ -42,7 +43,14 @@ class Register extends Component {
         e.preventDefault();
 
         this.setState({
-            valid: true
+            valid: true,
+            nameValid: true,
+            surnameValid: true,
+            guidValid: true,
+            emailValid: true,
+            pwd1Valid: true,
+            pwd2Valid: true,
+            isCheckedValid: true,
         });
 
         if(this.state.name.length < 3) {
@@ -85,6 +93,7 @@ class Register extends Component {
             this.setState({
                 valid: false,
                 pwd1Valid: false,
+                pwd2Valid: false,
                 pwd1: "",
                 pwd1Placeholder: "Try a bit longer password!"
             });
@@ -105,13 +114,40 @@ class Register extends Component {
                 isCheckedValid: false
             });
         }
+    };
 
+    handleBack = (e) => {
+        if(e.target.getAttribute("class") === "blackpage") {
+            this.setState({
+                redirect: "/"
+            });
+        }
     };
 
     render() {
-        if(this.state.valid) {
+        if(this.state.redirect) {
+            return <Redirect to={this.state.redirect} />
+        } else if(this.state.valid) {
+            console.log(this.state.valid)
+            const newUser = {
+                name: this.state.name,
+                surname: this.state.surname,
+                guid: this.state.guid,
+                email: this.state.email,
+                password: this.state.pwd1
+            };
+
+            fetch("http://localhost:3000/users", {
+                method: 'POST', // or 'PUT'
+                body: JSON.stringify(newUser), // data can be `string` or {object}!
+                headers:{
+                    'Content-Type': 'application/json'
+                }
+            }).then(res => res.json())
+                .catch(err => console.log(err));
+
             return (
-                <div className={"blackpage"}>
+                <div className={"blackpage"} onClick={this.handleBack}>
                     <div className={"register whitepage"}>
                         <h2>{"Hi " + this.state.name + ","}</h2>
                         <h4>Thank you for your registration!</h4>
@@ -120,7 +156,7 @@ class Register extends Component {
             );
         } else {
             return (
-                <div className={"blackpage"}>
+                <div className={"blackpage"} onClick={this.handleBack}>
                     <div className={"register whitepage"}>
                         <h2>Register to drive!</h2>
                         <form onSubmit={this.handleSubmit}>
@@ -143,7 +179,8 @@ class Register extends Component {
                                    value={this.state.pwd2} onChange={this.handleChange}
                                    className={this.state.pwd2Valid ? "" : "invalid"} />
                             <div>
-                                <label className={this.state.isChecked ? "accept" : "no_accept" && this.state.isCheckedValid ? "no_accept" : "invalid_accept"}>
+                                <label className={this.state.isChecked ? "accept" : "no_accept"
+                                       && this.state.isCheckedValid ? "no_accept" : "invalid_accept"}>
                                     <input type="checkbox"
                                            checked={this.state.isChecked}
                                            onChange={this.toggleChange} />

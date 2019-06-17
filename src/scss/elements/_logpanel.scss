@@ -32,10 +32,10 @@
     color: $btn-color;
     margin: 15px;
     transition: color .2s ease-out;
-  }
 
-  label:hover {
-    color: #fff;
+    &:hover {
+      color: #fff;
+    }
   }
 
   .remember {

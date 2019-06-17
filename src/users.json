@@ -1,0 +1,20 @@
+{
+  "users": [
+    {
+      "name": "Beata",
+      "surname": "Krzyżowska",
+      "guid": "beata",
+      "email": "beata.krzyzowska@gazeta.pl",
+      "password": "1234",
+      "id": 1
+    },
+    {
+      "name": "Dominik",
+      "surname": "Dobry",
+      "guid": "dobry",
+      "email": "a@a.pl",
+      "password": "dupa123",
+      "id": 2
+    }
+  ]
+}

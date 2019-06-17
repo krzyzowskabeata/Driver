@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import {NavLink} from 'react-router-dom';
 import LogPanel from './LogPanel'
 import Register from './Register'
 
@@ -41,8 +42,12 @@ class Log extends Component {
             return (
                 <div className="header">
                     <div className="header_log">
-                        <button className="btn_log btn_active" name="login" onClick={this.handleClick}>Log in</button>
-                        <button className="btn_log" name="register" onClick={this.handleClick}>Register</button>
+                        <NavLink to="/log">
+                            <button className="btn_log btn_active" name="login" onClick={this.handleClick}>Log in</button>
+                        </NavLink>
+                        <NavLink to="/register">
+                            <button className="btn_log" name="register" onClick={this.handleClick}>Register</button>
+                        </NavLink>
                     </div>
                 </div>
             );
